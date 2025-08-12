@@ -1,0 +1,269 @@
+{% extends "base.html" %}
+
+{% block title %}Phishing Information - PhishGuard AI{% endblock %}
+
+{% block content %}
+<div class="main-content">
+    <!-- Hero Section -->
+    <div class="text-center mb-5">
+        <h1 class="gradient-text">Phishing Attack Types & Prevention</h1>
+        <p class="lead">Learn about different phishing techniques and how to protect yourself</p>
+    </div>
+
+    <!-- Phishing Types -->
+    <div class="row g-4 mb-5">
+        <div class="col-lg-4">
+            <div class="card h-100 border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h5 class="mb-0"><i class="fas fa-envelope me-2"></i>Email Phishing</h5>
+                </div>
+                <div class="card-body">
+                    <p>Mass emails sent to thousands of users, appearing to come from legitimate companies.</p>
+                    <h6>Red Flags:</h6>
+                    <ul class="small">
+                        <li>Generic greetings ("Dear Customer")</li>
+                        <li>Urgent action required</li>
+                        <li>Poor grammar and spelling</li>
+                        <li>Suspicious sender addresses</li>
+                    </ul>
+                    <h6>Prevention:</h6>
+                    <ul class="small">
+                        <li>Verify sender email addresses</li>
+                        <li>Don't click suspicious links</li>
+                        <li>Use spam filters</li>
+                        <li>Report suspicious emails</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card h-100 border-warning">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0"><i class="fas fa-bullseye me-2"></i>Spear Phishing</h5>
+                </div>
+                <div class="card-body">
+                    <p>Targeted attacks on specific individuals or organizations using personalized information.</p>
+                    <h6>Red Flags:</h6>
+                    <ul class="small">
+                        <li>Personalized with your name</li>
+                        <li>References to your work/company</li>
+                        <li>Appears to come from colleagues</li>
+                        <li>Requests sensitive information</li>
+                    </ul>
+                    <h6>Prevention:</h6>
+                    <ul class="small">
+                        <li>Verify requests through other channels</li>
+                        <li>Be suspicious of urgent requests</li>
+                        <li>Check email headers</li>
+                        <li>Use multi-factor authentication</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card h-100 border-info">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0"><i class="fas fa-whale me-2"></i>Whaling</h5>
+                </div>
+                <div class="card-body">
+                    <p>Targets high-profile executives and senior management with sophisticated attacks.</p>
+                    <h6>Red Flags:</h6>
+                    <ul class="small">
+                        <li>Appears to come from CEO/executive</li>
+                        <li>Requests large financial transfers</li>
+                        <li>Mentions confidential projects</li>
+                        <li>Urgent wire transfer requests</li>
+                    </ul>
+                    <h6>Prevention:</h6>
+                    <ul class="small">
+                        <li>Verify with executive directly</li>
+                        <li>Follow company procedures</li>
+                        <li>Require multiple approvals</li>
+                        <li>Train staff on whaling tactics</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional Phishing Types -->
+    <div class="row g-4 mb-5">
+        <div class="col-lg-6">
+            <div class="card h-100 border-secondary">
+                <div class="card-header bg-secondary text-white">
+                    <h5 class="mb-0"><i class="fas fa-mobile-alt me-2"></i>SMS Phishing (Smishing)</h5>
+                </div>
+                <div class="card-body">
+                    <p>Phishing attacks sent via text messages, often claiming to be from banks or delivery services.</p>
+                    <h6>Red Flags:</h6>
+                    <ul class="small">
+                        <li>Unexpected delivery notifications</li>
+                        <li>Bank account alerts</li>
+                        <li>Clickable links in SMS</li>
+                        <li>Requests for personal info</li>
+                    </ul>
+                    <h6>Prevention:</h6>
+                    <ul class="small">
+                        <li>Don't click SMS links</li>
+                        <li>Contact companies directly</li>
+                        <li>Use official apps</li>
+                        <li>Report suspicious texts</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="card h-100 border-primary">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="fas fa-phone me-2"></i>Voice Phishing (Vishing)</h5>
+                </div>
+                <div class="card-body">
+                    <p>Phone-based attacks where scammers impersonate legitimate organizations.</p>
+                    <h6>Red Flags:</h6>
+                    <ul class="small">
+                        <li>Automated voice messages</li>
+                        <li>Requests for account details</li>
+                        <li>Threats of account closure</li>
+                        <li>Caller ID spoofing</li>
+                    </ul>
+                    <h6>Prevention:</h6>
+                    <ul class="small">
+                        <li>Hang up immediately</li>
+                        <li>Call companies back directly</li>
+                        <li>Never share personal info</li>
+                        <li>Use call blocking apps</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Prevention Strategies -->
+    <div class="card mb-5">
+        <div class="card-header bg-success text-white">
+            <h4 class="mb-0"><i class="fas fa-shield-alt me-2"></i>General Prevention Strategies</h4>
+        </div>
+        <div class="card-body">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <h5><i class="fas fa-lock me-2"></i>Security Best Practices</h5>
+                    <ul>
+                        <li>Use strong, unique passwords</li>
+                        <li>Enable multi-factor authentication</li>
+                        <li>Keep software updated</li>
+                        <li>Use reputable antivirus software</li>
+                        <li>Regularly backup important data</li>
+                        <li>Be cautious with public Wi-Fi</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h5><i class="fas fa-user-shield me-2"></i>Personal Vigilance</h5>
+                    <ul>
+                        <li>Think before clicking</li>
+                        <li>Verify sender identities</li>
+                        <li>Check for HTTPS in URLs</li>
+                        <li>Be suspicious of urgent requests</li>
+                        <li>Don't share personal information</li>
+                        <li>Trust your instincts</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- URL Safety Checklist -->
+    <div class="card mb-5">
+        <div class="card-header bg-info text-white">
+            <h4 class="mb-0"><i class="fas fa-check-circle me-2"></i>URL Safety Checklist</h4>
+        </div>
+        <div class="card-body">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <div class="d-flex align-items-center mb-2">
+                        <i class="fas fa-check text-success me-2"></i>
+                        <span>URL starts with HTTPS</span>
+                    </div>
+                    <div class="d-flex align-items-center mb-2">
+                        <i class="fas fa-check text-success me-2"></i>
+                        <span>Domain name is familiar</span>
+                    </div>
+                    <div class="d-flex align-items-center mb-2">
+                        <i class="fas fa-check text-success me-2"></i>
+                        <span>No excessive special characters</span>
+                    </div>
+                    <div class="d-flex align-items-center mb-2">
+                        <i class="fas fa-check text-success me-2"></i>
+                        <span>No IP addresses in domain</span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex align-items-center mb-2">
+                        <i class="fas fa-times text-danger me-2"></i>
+                        <span>Generic greetings in emails</span>
+                    </div>
+                    <div class="d-flex align-items-center mb-2">
+                        <i class="fas fa-times text-danger me-2"></i>
+                        <span>Urgent action required</span>
+                    </div>
+                    <div class="d-flex align-items-center mb-2">
+                        <i class="fas fa-times text-danger me-2"></i>
+                        <span>Requests for personal info</span>
+                    </div>
+                    <div class="d-flex align-items-center mb-2">
+                        <i class="fas fa-times text-danger me-2"></i>
+                        <span>Poor grammar and spelling</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="text-center mb-4">
+        <a href="{{ url_for('scan_url') }}" class="btn btn-primary btn-lg me-3">
+            <i class="fas fa-search me-2"></i>Scan a URL
+        </a>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-outline-primary btn-lg">
+            <i class="fas fa-tachometer-alt me-2"></i>Go to Dashboard
+        </a>
+    </div>
+
+    <!-- Additional Resources -->
+    <div class="card">
+        <div class="card-header bg-dark text-white">
+            <h4 class="mb-0"><i class="fas fa-book me-2"></i>Additional Resources</h4>
+        </div>
+        <div class="card-body">
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <h6><i class="fas fa-globe me-2"></i>Government Resources</h6>
+                    <ul class="small">
+                        <li>FTC Phishing Scams</li>
+                        <li>FBI Internet Crime</li>
+                        <li>DHS Cybersecurity</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h6><i class="fas fa-university me-2"></i>Educational Resources</h6>
+                    <ul class="small">
+                        <li>Cybersecurity Awareness</li>
+                        <li>Phishing Simulation Tools</li>
+                        <li>Security Training Programs</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h6><i class="fas fa-tools me-2"></i>Tools & Services</h6>
+                    <ul class="small">
+                        <li>URL Reputation Checkers</li>
+                        <li>Email Security Services</li>
+                        <li>Password Managers</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

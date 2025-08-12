@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+
+{% block title %}Scan URL - PhishGuard AI{% endblock %}
+
+{% block content %}
+<div class="main-content">
+    <div class="text-center mb-5">
+        <i class="fas fa-search fa-3x text-primary mb-3"></i>
+        <h1 class="gradient-text">URL Phishing Scanner</h1>
+        <p class="lead">Enter a suspicious URL to analyze it for potential phishing threats</p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <!-- Scan Form -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-link me-2"></i>Enter URL to Scan</h5>
+                </div>
+                <div class="card-body">
+                    <form method="POST" id="scanForm">
+                        <div class="mb-3">
+                            <label for="url" class="form-label">Website URL</label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="fas fa-globe"></i>
+                                </span>
+                                <input type="url" class="form-control form-control-lg" id="url" name="url" 
+                                       placeholder="https://example.com" required>
+                                <button type="submit" class="btn btn-primary btn-lg" id="scanBtn">
+                                    <i class="fas fa-search me-2"></i>Scan URL
+                                </button>
+                            </div>
+                            <div class="form-text">Enter the complete URL including http:// or https://</div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Quick Scan Examples -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h6 class="mb-0"><i class="fas fa-lightbulb me-2"></i>Try These Examples</h6>
+                </div>
+                <div class="card-body">
+                    <div class="row g-2">
+                        <div class="col-md-6">
+                            <button class="btn btn-outline-secondary btn-sm w-100 example-url" 
+                                    data-url="https://www.google.com">
+                                <i class="fas fa-link me-1"></i>Google (Safe)
+                            </button>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-outline-secondary btn-sm w-100 example-url" 
+                                    data-url="https://www.facebook.com">
+                                <i class="fas fa-link me-1"></i>Facebook (Safe)
+                            </button>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-outline-secondary btn-sm w-100 example-url" 
+                                    data-url="https://www.amazon.com">
+                                <i class="fas fa-link me-1"></i>Amazon (Safe)
+                            </button>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-outline-secondary btn-sm w-100 example-url" 
+                                    data-url="https://www.microsoft.com">
+                                <i class="fas fa-link me-1"></i>Microsoft (Safe)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- How It Works -->
+            <div class="card">
+                <div class="card-header">
+                    <h6 class="mb-0"><i class="fas fa-info-circle me-2"></i>How Our Scanner Works</h6>
+                </div>
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-md-4 text-center">
+                            <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-2" style="width: 60px; height: 60px;">
+                                <i class="fas fa-microchip fa-lg text-primary"></i>
+                            </div>
+                            <h6>Feature Extraction</h6>
+                            <small class="text-muted">Analyzes 30+ URL characteristics</small>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-2" style="width: 60px; height: 60px;">
+                                <i class="fas fa-brain fa-lg text-primary"></i>
+                            </div>
+                            <h6>AI Analysis</h6>
+                            <small class="text-muted">ML model processes features</small>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-2" style="width: 60px; height: 60px;">
+                                <i class="fas fa-chart-bar fa-lg text-primary"></i>
+                            </div>
+                            <h6>Risk Assessment</h6>
+                            <small class="text-muted">Provides confidence score</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const scanForm = document.getElementById('scanForm');
+    const urlInput = document.getElementById('url');
+    const scanBtn = document.getElementById('scanBtn');
+    const exampleUrls = document.querySelectorAll('.example-url');
+
+    // Example URL buttons
+    exampleUrls.forEach(btn => {
+        btn.addEventListener('click', function() {
+            urlInput.value = this.dataset.url;
+            urlInput.focus();
+        });
+    });
+
+    // Form submission
+    scanForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const url = urlInput.value.trim();
+        if (!url) {
+            alert('Please enter a URL to scan');
+            return;
+        }
+
+        // Show loading state
+        scanBtn.disabled = true;
+        scanBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Scanning...';
+        
+        // Submit form
+        this.submit();
+    });
+
+    // URL validation
+    urlInput.addEventListener('input', function() {
+        const url = this.value.trim();
+        if (url && !url.startsWith('http://') && !url.startsWith('https://')) {
+            this.setCustomValidity('URL must start with http:// or https://');
+        } else {
+            this.setCustomValidity('');
+        }
+    });
+});
+</script>
+{% endblock %}
