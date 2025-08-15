@@ -5,25 +5,27 @@
 {% block content %}
 <div class="main-content">
     <!-- Hero Section -->
-    <div class="hero-section">
-        <div class="floating-animation">
-            <i class="fas fa-shield-alt feature-icon"></i>
+    <div class="hero-section text-center">
+        <div class="floating-animation mb-4">
+            <div class="hero-icon-wrapper">
+                <i class="fas fa-shield-alt hero-icon"></i>
+            </div>
         </div>
-        <h1>Protect Against Phishing Attacks</h1>
-        <p class="lead">Advanced AI-powered phishing detection system that analyzes URLs in real-time to keep you safe from malicious websites.</p>
+        <h1 class="hero-title">Protect Against Phishing Attacks</h1>
+        <p class="hero-subtitle">Advanced AI-powered phishing detection system that analyzes URLs in real-time to keep you safe from malicious websites.</p>
         <div class="d-flex gap-3 justify-content-center flex-wrap">
             {% if not current_user.is_authenticated %}
-                <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg">
+                <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg hero-btn">
                     <i class="fas fa-rocket me-2"></i>Get Started Free
                 </a>
-                <a href="{{ url_for('login') }}" class="btn btn-outline-light btn-lg">
+                <a href="{{ url_for('login') }}" class="btn btn-outline-primary btn-lg hero-btn">
                     <i class="fas fa-sign-in-alt me-2"></i>Sign In
                 </a>
             {% else %}
-                <a href="{{ url_for('scan_url') }}" class="btn btn-primary btn-lg">
+                <a href="{{ url_for('scan_url') }}" class="btn btn-primary btn-lg hero-btn">
                     <i class="fas fa-search me-2"></i>Scan URL Now
                 </a>
-                <a href="{{ url_for('dashboard') }}" class="btn btn-outline-light btn-lg">
+                <a href="{{ url_for('dashboard') }}" class="btn btn-outline-primary btn-lg hero-btn">
                     <i class="fas fa-tachometer-alt me-2"></i>Go to Dashboard
                 </a>
             {% endif %}
@@ -33,27 +35,33 @@
     <!-- Features Section -->
     <div class="row g-4 mb-5">
         <div class="col-md-4">
-            <div class="card h-100 text-center">
+            <div class="feature-card feature-card-1 h-100 text-center">
                 <div class="card-body">
-                    <i class="fas fa-brain feature-icon"></i>
+                    <div class="feature-icon-wrapper mb-3">
+                        <i class="fas fa-brain feature-icon"></i>
+                    </div>
                     <h4 class="card-title">AI-Powered Detection</h4>
                     <p class="card-text">Advanced machine learning algorithms analyze 30+ features to detect phishing attempts with high accuracy.</p>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card h-100 text-center">
+            <div class="feature-card feature-card-2 h-100 text-center">
                 <div class="card-body">
-                    <i class="fas fa-bolt feature-icon"></i>
+                    <div class="feature-icon-wrapper mb-3">
+                        <i class="fas fa-bolt feature-icon"></i>
+                    </div>
                     <h4 class="card-title">Real-Time Analysis</h4>
                     <p class="card-text">Instant URL scanning with comprehensive threat assessment and detailed risk analysis reports.</p>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card h-100 text-center">
+            <div class="feature-card feature-card-3 h-100 text-center">
                 <div class="card-body">
-                    <i class="fas fa-chart-line feature-icon"></i>
+                    <div class="feature-icon-wrapper mb-3">
+                        <i class="fas fa-chart-line feature-icon"></i>
+                    </div>
                     <h4 class="card-title">Smart Analytics</h4>
                     <p class="card-text">Track your security history, monitor trends, and get insights into potential threats.</p>
                 </div>
@@ -103,22 +111,28 @@
     <!-- Statistics Section -->
     <div class="row g-4 mb-5">
         <div class="col-md-4">
-            <div class="stats-card">
-                <i class="fas fa-shield-alt fa-3x mb-3"></i>
+            <div class="stats-card stats-card-1">
+                <div class="stats-icon-wrapper mb-3">
+                    <i class="fas fa-shield-alt fa-3x"></i>
+                </div>
                 <h3>99.5%</h3>
                 <p>Detection Accuracy</p>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="stats-card">
-                <i class="fas fa-clock fa-3x mb-3"></i>
+            <div class="stats-card stats-card-2">
+                <div class="stats-icon-wrapper mb-3">
+                    <i class="fas fa-clock fa-3x"></i>
+                </div>
                 <h3>< 2s</h3>
                 <p>Scan Time</p>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="stats-card">
-                <i class="fas fa-eye fa-3x mb-3"></i>
+            <div class="stats-card stats-card-3">
+                <div class="stats-icon-wrapper mb-3">
+                    <i class="fas fa-eye fa-3x"></i>
+                </div>
                 <h3>30+</h3>
                 <p>Features Analyzed</p>
             </div>
@@ -126,18 +140,20 @@
     </div>
 
     <!-- CTA Section -->
-    <div class="text-center">
-        <h2 class="gradient-text mb-4">Ready to Protect Yourself?</h2>
-        <p class="lead mb-4">Join thousands of users who trust PhishGuard AI to keep them safe online.</p>
-        {% if not current_user.is_authenticated %}
-            <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg">
-                <i class="fas fa-user-plus me-2"></i>Create Free Account
-            </a>
-        {% else %}
-            <a href="{{ url_for('scan_url') }}" class="btn btn-primary btn-lg">
-                <i class="fas fa-search me-2"></i>Start Scanning URLs
-            </a>
-        {% endif %}
+    <div class="cta-section text-center">
+        <div class="cta-background">
+            <h2 class="cta-title mb-4">Ready to Protect Yourself?</h2>
+            <p class="cta-subtitle mb-4">Join thousands of users who trust PhishGuard AI to keep them safe online.</p>
+            {% if not current_user.is_authenticated %}
+                <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg cta-btn">
+                    <i class="fas fa-user-plus me-2"></i>Create Free Account
+                </a>
+            {% else %}
+                <a href="{{ url_for('scan_url') }}" class="btn btn-primary btn-lg cta-btn">
+                    <i class="fas fa-search me-2"></i>Start Scanning URLs
+                </a>
+            {% endif %}
+        </div>
     </div>
 </div>
 {% endblock %}

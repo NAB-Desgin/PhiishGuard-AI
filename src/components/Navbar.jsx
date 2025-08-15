@@ -22,6 +22,8 @@ const Navbar = () => {
   const location = useLocation()
   const navigate = useNavigate()
 
+
+
   const handleLogout = () => {
     logout()
     navigate('/')

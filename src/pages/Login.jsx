@@ -5,7 +5,7 @@ import { useAuth } from '../contexts/AuthContext';
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    email: '',
+    username: '',
     password: ''
   });
   const [showPassword, setShowPassword] = useState(false);
@@ -27,10 +27,14 @@ const Login = () => {
     setLoading(true);
 
     try {
-      await login(formData.email, formData.password);
-      navigate('/dashboard');
+      const result = await login(formData.username, formData.password);
+      if (result.success) {
+        navigate('/dashboard');
+      } else {
+        setError(result.error || 'Failed to login. Please check your credentials.');
+      }
     } catch (err) {
-      setError(err.response?.data?.error || 'Failed to login. Please check your credentials.');
+      setError('Failed to login. Please check your credentials.');
     } finally {
       setLoading(false);
     }
@@ -57,22 +61,22 @@ const Login = () => {
         {/* Login Form */}
         <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8">
           <form className="space-y-6" onSubmit={handleSubmit}>
-            {/* Email Field */}
+            {/* Username Field */}
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Email Address
+              <label htmlFor="username" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Username
               </label>
               <div className="relative">
                 <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
+                  id="username"
+                  name="username"
+                  type="text"
+                  autoComplete="username"
                   required
-                  value={formData.email}
+                  value={formData.username}
                   onChange={handleChange}
                   className="w-full px-4 py-3 pl-12 border border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-slate-700 dark:text-white transition-all duration-200"
-                  placeholder="Enter your email"
+                  placeholder="Enter your username"
                 />
                 <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
               </div>
@@ -164,7 +168,7 @@ const Login = () => {
               Demo Account
             </h3>
             <p className="text-xs text-blue-700 dark:text-blue-300">
-              Email: admin@phishguard.ai<br />
+              Username: admin<br />
               Password: admin123
             </p>
           </div>

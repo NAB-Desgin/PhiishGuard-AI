@@ -112,6 +112,42 @@ const Info = () => {
     'Look for poor website design or content'
   ];
 
+  const realPhishingIncidents = [
+    {
+      title: 'Google Docs Phishing Attack (2017)',
+      description: 'A sophisticated phishing attack that used Google Docs to steal credentials from over 1 million users. Attackers sent emails with a link to a fake Google Docs page that requested access to users\' Google accounts.',
+      impact: '1+ million users affected',
+      lessons: [
+        'Always verify app permissions before granting access',
+        'Be suspicious of unexpected permission requests',
+        'Check the actual domain in the address bar',
+        'Enable two-factor authentication'
+      ]
+    },
+    {
+      title: 'Facebook-Cambridge Analytica Data Scandal (2018)',
+      description: 'While not a traditional phishing attack, this incident involved deceptive data collection practices where users were tricked into sharing personal information through seemingly legitimate surveys and personality tests.',
+      impact: '87 million users\' data compromised',
+      lessons: [
+        'Be cautious of free online quizzes and surveys',
+        'Read privacy policies and terms of service',
+        'Limit the information you share on social media',
+        'Regularly review and revoke app permissions'
+      ]
+    },
+    {
+      title: 'Target Data Breach (2013)',
+      description: 'Attackers gained access to Target\'s network through a phishing email sent to a third-party vendor, eventually compromising 40 million credit card records and 70 million customer records.',
+      impact: '110 million customers affected',
+      lessons: [
+        'Third-party vendors can be attack vectors',
+        'Phishing attacks can target employees, not just customers',
+        'Implement strong email security measures',
+        'Regular security training for all staff members'
+      ]
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
@@ -217,6 +253,44 @@ const Info = () => {
                 </ul>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Real Phishing Incidents */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+            Real-World Phishing Incidents
+          </h2>
+          <div className="space-y-8">
+            {realPhishingIncidents.map((incident, index) => (
+              <div key={index} className="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-6 border-l-4 border-red-500">
+                <div className="flex items-start justify-between mb-4">
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{incident.title}</h3>
+                  <span className="bg-red-100 dark:bg-red-900/20 text-red-600 dark:text-red-400 px-3 py-1 rounded-full text-sm font-medium">
+                    {incident.impact}
+                  </span>
+                </div>
+                
+                <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                  {incident.description}
+                </p>
+                
+                <div>
+                  <h4 className="font-medium text-blue-600 dark:text-blue-400 mb-3 flex items-center">
+                    <AlertTriangle className="w-4 h-4 mr-2" />
+                    Key Lessons Learned
+                  </h4>
+                  <ul className="space-y-2">
+                    {incident.lessons.map((lesson, lessonIndex) => (
+                      <li key={lessonIndex} className="text-sm text-gray-600 dark:text-gray-300 flex items-start">
+                        <span className="text-blue-500 mr-2">•</span>
+                        {lesson}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 

@@ -16,14 +16,20 @@ const Scan = () => {
       return;
     }
 
-    console.log('Starting scan for URL:', url);
+    // Normalize URL - add protocol if missing
+    let normalizedUrl = url.trim();
+    if (!normalizedUrl.startsWith('http://') && !normalizedUrl.startsWith('https://')) {
+      normalizedUrl = 'http://' + normalizedUrl;
+    }
+
+    console.log('Starting scan for URL:', normalizedUrl);
     
     setIsScanning(true);
     setError('');
     setResult(null);
 
     try {
-      const response = await scanUrl(url);
+      const response = await scanUrl(normalizedUrl);
       console.log('Scan response:', response);
       
       if (response.success) {

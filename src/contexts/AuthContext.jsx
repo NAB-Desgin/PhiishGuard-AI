@@ -63,12 +63,14 @@ export const AuthProvider = ({ children }) => {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
       setUser(user)
       
+
+      
       return { success: true }
     } catch (error) {
       console.error('Login failed:', error)
       return { 
         success: false, 
-        error: error.response?.data?.message || 'Login failed' 
+        error: error.response?.data?.error || 'Login failed' 
       }
     }
   }

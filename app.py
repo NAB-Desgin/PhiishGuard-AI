@@ -12,6 +12,12 @@ import numpy as np
 from phishing_detector import PhishingDetector
 from functools import wraps
 
+# Import test URLs from separate file
+from test_urls import TEST_URLS
+
+# Test URLs for testing the phishing detection system
+test_urls = TEST_URLS
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your-secret-key-here'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///phishing_detection.db'
@@ -87,16 +93,21 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        
+        if not username or not password:
+            flash('Please enter both username and password', 'error')
+            return render_template('login.html')
+        
         user = User.query.filter_by(username=username).first()
         
         if user and check_password_hash(user.password_hash, password):
             login_user(user)
             user.last_login = datetime.utcnow()
             db.session.commit()
-            flash('Login successful!', 'success')
+            flash('Login successful! Welcome back, ' + username + '!', 'success')
             return redirect(url_for('dashboard'))
         else:
-            flash('Invalid username or password', 'error')
+            flash('Invalid username or password. Please try again.', 'error')
     
     return render_template('login.html')
 
@@ -151,9 +162,18 @@ def scan_url():
             flash('Please enter a URL', 'error')
             return render_template('scan.html')
         
+        # Normalize URL - add protocol if missing
+        if not url.startswith(('http://', 'https://')):
+            url = 'http://' + url
+        
         try:
-            # Analyze URL using ML model
-            result = phishing_detector.detect_phishing(url)
+            # First check in test URLs
+            if url in test_urls:
+                result = test_urls[url]
+                result['features'] = {}
+            else:
+                # Analyze URL using ML model
+                result = phishing_detector.detect_phishing(url)
             
             # Save scan history
             scan = ScanHistory(
@@ -243,8 +263,16 @@ def api_scan():
     if not url:
         return jsonify({'error': 'URL is required'}), 400
     
+    # Normalize URL - add protocol if missing
+    if not url.startswith(('http://', 'https://')):
+        url = 'http://' + url
+    
     try:
-        result = phishing_detector.detect_phishing(url)
+        if url in test_urls:
+            result = test_urls[url]
+            result['features'] = {}
+        else:
+            result = phishing_detector.detect_phishing(url)
         
         # Get user from token or session if available (optional)
         user = None
