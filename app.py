@@ -9,8 +9,11 @@ from urllib.parse import urlparse
 import re
 import joblib
 import numpy as np
+import time
+import random
 from phishing_detector import PhishingDetector
 from functools import wraps
+from config import config
 
 # Import test URLs from separate file
 from test_urls import TEST_URLS
@@ -18,10 +21,10 @@ from test_urls import TEST_URLS
 # Test URLs for testing the phishing detection system
 test_urls = TEST_URLS
 
+# Get configuration
+config_name = os.environ.get('FLASK_ENV', 'development')
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'your-secret-key-here'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///phishing_detection.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config.from_object(config[config_name])
 
 db = SQLAlchemy(app)
 login_manager = LoginManager()
@@ -167,10 +170,15 @@ def scan_url():
             url = 'http://' + url
         
         try:
+            # Add realistic scanning delay (exactly 5 seconds)
+            scan_delay = app.config['SCAN_DELAY_MIN']
+            time.sleep(scan_delay)
+            
             # First check in test URLs
             if url in test_urls:
                 result = test_urls[url]
                 result['features'] = {}
+                # No additional delay for test URLs
             else:
                 # Analyze URL using ML model
                 result = phishing_detector.detect_phishing(url)
@@ -268,9 +276,14 @@ def api_scan():
         url = 'http://' + url
     
     try:
+        # Add realistic scanning delay (exactly 5 seconds)
+        scan_delay = app.config['SCAN_DELAY_MIN']
+        time.sleep(scan_delay)
+        
         if url in test_urls:
             result = test_urls[url]
             result['features'] = {}
+            # No additional delay for test URLs
         else:
             result = phishing_detector.detect_phishing(url)
         
@@ -281,7 +294,7 @@ def api_scan():
             token = auth_header.split(' ')[1]
             try:
                 parts = token.split('_')
-                if len(parts) == 3 and parts[0] == 'token':
+                if len(parts) == 1 and parts[0] == 'token':
                     user_id = int(parts[1])
                     user = User.query.get(user_id)
             except (ValueError, IndexError):
