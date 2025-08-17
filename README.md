@@ -69,10 +69,7 @@ Open your browser and navigate to: **http://localhost:5000**
 
 After initialization, you'll have these accounts:
 
-| Role | Username | Password | Access |
-|------|----------|----------|---------|
-| **Admin** | `admin` | `admin123` | Full system access |
-| **Demo** | `demo` | `demo123` | Regular user access |
+
 
 ## 🧪 Testing the System
 
